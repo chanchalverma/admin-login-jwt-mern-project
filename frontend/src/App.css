@@ -1,0 +1,78 @@
+
+/* TYPOGRAPHY */
+
+body{
+  background: grey;
+}
+header{
+  width: 100%;
+  text-align: center;
+  color:rgb(238, 202, 210);
+  /* border:3px solid red; */
+}
+
+button,input{
+  border-radius: 1em;
+  padding:0.5em;
+}
+
+.input-todo{
+  padding:1em;
+  margin:1em;
+}
+ 
+/* layout */
+
+/* .section{
+  border:5px solid black;
+  display: flex;
+  justify-content: center;
+  margin:0 auto;
+} */
+.card-container{
+  /* width: 70%;
+  height: 70%; */
+  display:flex;
+  justify-content: center;
+ /* border:3px solid blue; */
+ 
+}
+.card{
+  width:10rem;
+  height:10rem;
+
+  border: 1px solid black;
+  padding:0.2em;
+  margin:0.5em;
+  background-color:rgb(238, 202, 210);
+  color: black;
+  
+  overflow:auto;
+  word-break: break-all;
+  border-radius: 0.5rem;
+
+
+}
+/* todo is completed then line-through */
+.completed{
+  text-decoration: line-through;
+  color: gray;
+  background-color: rgb(175, 173, 173);
+}
+
+@media (max-width:750px){
+  .card-container{
+    flex-direction: column;
+    /* width:70%; */
+    /* border:2px solid white; */
+
+  }
+  .card{
+    width: 70%;
+    margin:auto
+    /* height: 20rem; */
+  }
+  /* .section{
+    border:1px solid black
+  } */
+}

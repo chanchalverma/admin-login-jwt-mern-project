@@ -1,0 +1,21 @@
+{
+  "name": "admin-login-system-crud-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/server.js",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "react-script": "^2.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd frontend && npm run build",
+    "install-client": "cd frontend && npm install",
+    "install-backend": "cd backend && npm install",
+    "start": "cd backend && node server.js",
+    "client": "cd frontend && npm start",
+    "dev": "concurrently -n 'server,client' -c 'red,green' \"nodemon start\" \" npm run client\"",
+    "install": "concurrently \"npm run install-backend \" \" npm run install-client\"  "
+  }
+}

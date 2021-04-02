@@ -1,0 +1,11 @@
+nav ul {
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid green; */
+  list-style: none;
+}
+
+.bg-dark {
+  background: linear-gradient(45deg, black, darkslategray);
+}
