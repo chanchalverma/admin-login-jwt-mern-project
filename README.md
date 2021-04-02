@@ -1,5 +1,19 @@
-# ADMIN LOGIN MERN PERJOJECT
-Full STack MERN App 
+# ADMIN LOGIN MERN PROJECT
+Full STack MERN App - 
+1. For ADMIN Login - For very first user need to Signup from Postman 
+2 URL - POST Method - http://localhost:5000/signup
+3. Body (json):-
+ {
+   "username":"username",
+    "first_name":"f name",
+     "last_name":"last name",
+      "email":"email",
+      "password":"psd",
+      "roles":"admin",
+      "hobbies":"dancing,reading"
+      
+      
+ }
 
 ## ** What you need to run this code **
 1. Node 
