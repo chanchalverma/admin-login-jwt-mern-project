@@ -2,9 +2,9 @@
 
 Full STack MERN App -
 
-1. For ADMIN Login - For very first user need to Signup from Postman
-   2 URL - POST Method - http://localhost:5000/signup
-2. Body (json):-
+1. For ADMIN Login - For very first user need to Signup from Postman, that admin can give access from "user" to "admin".
+2.URL - POST Method - http://localhost:5000/signup 
+3. Body (json):-
    {
    "username":"username",
    "first_name":"f name",
