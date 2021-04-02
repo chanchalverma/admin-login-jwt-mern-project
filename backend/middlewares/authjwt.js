@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const db = require("../models");
+const config = require("../config");
 const User = db.User;
 
 verifyToken = (req, res, next) => {
@@ -11,7 +12,9 @@ verifyToken = (req, res, next) => {
       .send({ message: "Unauthorized , token is not  available" });
   }
 
-  jwt.verify(token, "SECRET_KEY", (err, decoded) => {
+  const SECRET_KEY = config.SecretKey;
+
+  jwt.verify(token, SECRET_KEY, (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: "Unauthorized ||" });
     }

@@ -5,6 +5,7 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("./models");
+const config = require("./config");
 const { verifyToken, isAdmin, isUser } = require("./middlewares/authjwt");
 const app = express();
 
@@ -20,27 +21,6 @@ function success(res, payload) {
 app.get("/", (req, res) => {
   res.send("welcome");
 });
-
-// app.get("/todos", async (req, res, next) => {
-//   try {
-//     console.log(req);
-//     const todo = await db.User.find({}); // find all data , empty {} means all
-//     return success(res, todo);
-//   } catch (error) {
-//     next({ status: 400, message: "failed to get todos" });
-//   }
-// });
-
-// app.post("/todos", async (req, res, next) => {
-//   try {
-//     console.log(req);
-
-//     const todo = await db.User.create(req.body);
-//     return success(res, todo);
-//   } catch (error) {
-//     next({ status: 400, message: "failed to create todos" });
-//   }
-// });
 
 app.put("/admin/:id", async (req, res, next) => {
   try {
@@ -101,8 +81,6 @@ app.post("/signup", (req, res) => {
     console.log("user20=", user.hobbies);
 
     user.save((err, user) => {
-      // console.log("user200=", err, user);
-
       if (err) {
         return res.status(500).send({ message: err });
       }
@@ -166,7 +144,8 @@ app.post("/signin", (req, res) => {
       });
     }
 
-    var token = jwt.sign({ id: user.id }, "SECRET_KEY", {
+    const SECRET_KEY = config.SecretKey;
+    var token = jwt.sign({ id: user.id }, SECRET_KEY, {
       expiresIn: 86400, //24 hours
     });
 

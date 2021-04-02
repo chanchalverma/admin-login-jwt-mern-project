@@ -162,7 +162,14 @@ const SignUp = (props) => {
                       />
                     </div>
                     <div className="form-group">
-                      <button className="btn btn-primary btn-block">
+                      <button
+                        className="btn btn-primary btn-block"
+                        style={{
+                          background:
+                            "linear-gradient(45deg, black, darkslategray)",
+                          color: "white",
+                        }}
+                      >
                         Sign Up
                       </button>
                     </div>
