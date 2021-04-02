@@ -6,7 +6,6 @@ import { withRouter } from "react-router-dom";
 
 const Header = (props) => {
   const isCurrentUser = Services.getCurrentUser();
-  console.log("is current user=", isCurrentUser);
 
   const logout = () => {
     localStorage.removeItem("user");

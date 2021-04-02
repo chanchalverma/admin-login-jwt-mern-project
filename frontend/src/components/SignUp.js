@@ -27,7 +27,6 @@ const validEmail = (value) => {
 };
 
 const SignUp = (props) => {
-  console.log("sinup");
   const form = useRef();
   const checkBtn = useRef();
 

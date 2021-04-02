@@ -32,21 +32,18 @@ const SignIn = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("a=", checkBtn);
+
     setErrormessage("");
     setLoading(true);
     loginForm.current.validateAll();
-    console.log(loginForm.current);
 
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username, password).then(
         (response) => {
-          console.log("res=", response.roles);
           if (response.roles === "admin") {
             props.history.push("/dashboard/admin");
           } else props.history.push("/dashboard/user");
 
-          //   window.location.reload();
           alert("login");
         },
         (error) => {
@@ -67,9 +64,6 @@ const SignIn = (props) => {
   };
 
   return (
-    // <div className="col-md-6">
-    //   <div className="card card-container">
-
     <div className="container">
       <div
         className="row"

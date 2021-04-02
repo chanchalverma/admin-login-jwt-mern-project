@@ -10,8 +10,6 @@ const PaginationTable = ({
   columns,
   title,
 }) => {
-  console.log("props=", data);
-
   return (
     <div>
       {Array.isArray(data) && data.length > 1 ? (

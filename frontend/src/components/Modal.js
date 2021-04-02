@@ -8,7 +8,6 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 export default function Modal(props) {
-  console.log("props in modal=", props);
   return (
     <Dialog
       open={props.open}
@@ -53,6 +52,7 @@ export default function Modal(props) {
           value={props.username} // same as above and event.target.value
           onChange={(e) => props.onUpdate(e)}
           fullWidth
+          disabled
           required
         />
         <TextField
@@ -77,6 +77,7 @@ export default function Modal(props) {
           value={props.email}
           fullWidth
           required
+          disabled
         />
         <TextField
           margin="dense"
@@ -94,11 +95,7 @@ export default function Modal(props) {
         <Button onClick={props.onClose} color="primary">
           Cancel
         </Button>
-        <Button
-          onClick={props.onUpdateData}
-          color="primary"
-          //   disabled={(props.name && props.email) == null ? true : false}
-        >
+        <Button onClick={props.onUpdateData} color="primary">
           Apply
         </Button>
       </DialogActions>

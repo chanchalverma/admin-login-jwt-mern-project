@@ -9,7 +9,7 @@ import PaginationTable from "./PaginationTable";
 const Header = ["First Name", "Last Name", "Player ID", "Team Id"];
 const perPageItemCount = 50;
 const columns = "firstName.lastName.playerId.teamId";
-const title = "User List";
+const title = "Player List";
 
 const UserDashboard = (props) => {
   const [content, setContent] = useState([]);
@@ -22,7 +22,6 @@ const UserDashboard = (props) => {
     }
     UserService.getUserDashboard().then(
       (response) => {
-        console.log("res=", response);
         setContent(playerList);
       },
       (error) => {

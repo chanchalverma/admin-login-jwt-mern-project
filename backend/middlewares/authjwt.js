@@ -19,7 +19,7 @@ verifyToken = (req, res, next) => {
       return res.status(401).send({ message: "Unauthorized ||" });
     }
     req.UserId = decoded.id;
-    console.log("req=", req.UserId);
+
     next();
   });
 };

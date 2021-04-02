@@ -41,17 +41,14 @@ class Dashboard extends React.Component {
       .then((res) => {
         const afterRemoveData = data.filter((data) => data._id !== id);
         this.setState({ content: afterRemoveData });
-        console.log("pp=", afterRemoveData, this.state.content);
       })
       .catch((err) => {
-        console.log("err=", err);
         this.setState({ content: "Try Agian something went wrong" });
       });
   };
 
   handleEdit = (dataforEdit) => {
     let data = [...this.state.content];
-    console.log(":oo=", dataforEdit, data);
     const {
       id,
       first_name,
@@ -75,13 +72,8 @@ class Dashboard extends React.Component {
     });
   };
 
-  onModalHandler = (id, name, email, contact) => {
-    console.log(name, email);
-  };
-
   onChangeHandler = (event) => {
     let textbox = event.target.value;
-    console.log(textbox);
 
     this.setState({
       [event.target.name]: textbox,
@@ -129,7 +121,6 @@ class Dashboard extends React.Component {
       let oldData = [...this.state.content];
       UserService.updateDataById(id, newData)
         .then((res) => {
-          console.log("updtae=", res);
           const idOfUpdateData = res.id;
           const removeoldData = oldData.filter((data) => data._id !== id);
           console.log("filter==", removeoldData);
@@ -144,13 +135,13 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     const user = AuthService.getCurrentUser();
+
     if (!user) {
       this.props.history.push("/");
     }
 
     UserService.getAdminDashboard().then(
       (response) => {
-        console.log("res=", response.data);
         const newListWithButtons =
           response.data &&
           response.data.forEach((data) => {
@@ -164,7 +155,7 @@ class Dashboard extends React.Component {
               roles: data.roles,
               username: data.username,
             };
-            console.log("id=", id);
+
             return (
               (data.deleteButton = (
                 <button
@@ -184,8 +175,10 @@ class Dashboard extends React.Component {
               ))
             );
           });
-        console.log("data=", response.data);
-        this.setState({ content: response.data });
+        const removeLoginPersonData = response.data.filter(
+          (data) => data._id !== user.id
+        );
+        this.setState({ content: removeLoginPersonData });
       },
       (error) => {
         const _content =
@@ -203,18 +196,11 @@ class Dashboard extends React.Component {
     const perPageItemCount = 10;
     const columns =
       "first_name.last_name.email.username.hobbies.deleteButton.editButton";
-    const title = "Players List";
+    const title = "User List";
 
     return (
       <>
         <div className="container">
-          <button
-            onClick={() => this.onModalHandler()}
-            className="btn btn-block text-white text-right"
-          >
-            Profile
-          </button>
-          <h1>Users List</h1>
           <div className="">
             <PaginationTable
               header={Header}

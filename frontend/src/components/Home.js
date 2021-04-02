@@ -10,24 +10,17 @@ const Home = (props) => {
   const user = AuthService.getCurrentUser();
 
   useEffect(() => {
-    console.log("in");
     if (user) {
-      console.log("uer =", user);
-      setCurrentUser(user);
-      setShowUserDashboard(user.roles.includes("user"));
-      setShowAdminDashboard(user.roles.includes("admin"));
-
-      console.log("user==", user);
-      if (showAdminDashboard == "admin") {
+      if (user.roles == "admin") {
         return props.history.push("/dashboard/admin");
-      } else if (showUserDashboard == "user") {
+      } else if (user.roles == "user") {
         return props.history.push("/dashboard/user");
       }
     } else {
-      console.log("redirect to signup");
       return props.history.push("/signin");
     }
-  });
+  }, []);
+
   return (
     <>
       <div>Loading...</div>

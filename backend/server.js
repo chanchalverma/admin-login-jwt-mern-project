@@ -24,8 +24,6 @@ app.get("/", (req, res) => {
 
 app.put("/admin/:id", async (req, res, next) => {
   try {
-    console.log(req.params.id);
-
     const updatedData = await db.User.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -40,8 +38,6 @@ app.put("/admin/:id", async (req, res, next) => {
 });
 
 app.delete("/admin/:id", async (req, res, next) => {
-  console.log("delete========", req.params.id);
-
   try {
     await db.User.findByIdAndRemove(req.params.id);
     return success(res, "todo deleted");
@@ -62,7 +58,6 @@ app.post("/signup", (req, res) => {
   db.User.findOne({
     username: req.body.username,
   }).exec((err, userDetail) => {
-    console.log("user100=", err, userDetail);
     if (err) {
       return res.status(500).send({ message: err });
     }
@@ -78,13 +73,12 @@ app.post("/signup", (req, res) => {
       hobbies: req.body.hobbies,
       password: bcrypt.hashSync(req.body.password, 8),
     });
-    console.log("user20=", user.hobbies);
 
     user.save((err, user) => {
       if (err) {
         return res.status(500).send({ message: err });
       }
-      console.log("pp=", req.body.roles);
+
       if (req.body.roles) {
         // if roles exist - admin login
 
@@ -92,7 +86,6 @@ app.post("/signup", (req, res) => {
           user.roles = req.body.roles;
 
           user.save((err) => {
-            console.log("in admin=", err);
             if (err) {
               res.status(500).send({ message: err });
               return;
@@ -121,7 +114,6 @@ app.post("/signup", (req, res) => {
 // signin
 
 app.post("/signin", (req, res) => {
-  console.log("login req=", req);
   db.User.findOne({
     username: req.body.username,
   }).exec((err, user) => {
@@ -168,9 +160,7 @@ app.get("/dashboard/user", [verifyToken, isUser], (req, res) => {
 });
 // for normal user
 app.get("/dashboard/admin", [verifyToken, isAdmin], async (req, res) => {
-  // console.log("admini======", res);
   try {
-    console.log(req);
     const todo = await db.User.find({}); // find all data , empty {} means all
     return success(res, todo);
   } catch (error) {
